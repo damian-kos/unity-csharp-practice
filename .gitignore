@@ -1,0 +1,13 @@
+UserSettings/
+Library/
+Logs/
+Packages/
+ProjectSettings/
+Temp/
+Assets/Artwork
+Assets/Prefabs
+Assets/Scenes
+Artwork.meta
+Prefabs.meta
+Scenes.meta
+Scripts.meta
