@@ -1,18 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class FloatingTextManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject textContainer;
+    public GameObject textPrefab;
+    private List<FloatingText> floatingTexts = new List<FloatingText>();
+
+    private void Update()
     {
-        
+        foreach (FloatingText txt in floatingTexts)
+            txt.UpdateFloatingText();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Show(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
     {
-        
+        FloatingText floatingText = GetFloatingText();
+        floatingText.txt.text = msg;
+        floatingText.txt.fontSize = fontSize;
+        floatingText.txt.color = color;
+        floatingText.txt.transform.position = Camera.main.WorldToScreenPoint(position); // Transfer world space to screen space so we can use it in UI
+        floatingText.motion = motion;
+        floatingText.duration = duration;
+        floatingText.Show();
     }
+
+    private FloatingText GetFloatingText()
+    {
+        FloatingText txt = floatingTexts.Find(t => !t.active);
+
+        if (txt == null)
+        {
+            txt = new FloatingText();
+            txt.go = Instantiate(textPrefab);
+            txt.go.transform.SetParent(textContainer.transform);
+            txt.txt = txt.go.GetComponent<TextMeshProUGUI>();
+            floatingTexts.Add(txt);
+        }
+
+        return txt;
+    }
+
 }

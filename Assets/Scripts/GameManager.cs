@@ -29,10 +29,15 @@ public class GameManager : MonoBehaviour
     // References
     public Player player;
 
-
+    public FloatingTextManager floatingTextManager;
     // Logic
     public int pesos;
     public int experience;
+
+    public void ShowText(string msg, int fontSize, Color color, Vector3 position, Vector3 motion, float duration)
+    {
+        floatingTextManager.Show(msg, fontSize, color, position, motion, duration);
+    }
 
     public void SaveState()
     {
