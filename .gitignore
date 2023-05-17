@@ -12,3 +12,9 @@ Prefabs.meta
 Scenes.meta
 Scripts.meta
 Assets/TextMesh Pro
+*.csproj
+*.cache
+*.vsidx
+*.suo
+*.sln
+*.lock
